@@ -1,174 +1,384 @@
-/* 基本スタイル */
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5vh;
-    background-color: #574444;
-    color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
-#map {
-    position: absolute;
-    top: 5vh;
-    left: 0;
-    width: 100%;
-    height: 95vh;
-    z-index: 1; /* 地図を最背面に */
-}
-
-/*-----------*/
-
-#search-container {
-    position: absolute;
-    bottom: 20px; /* 画面の下から20pxの位置に */
-    left: 50%; /* 左から50%の位置に */
-    transform: translateX(-50%); /* 横中央に配置 */
-    z-index: 2; /* フォームを地図より前面に */
-    background-color: rgba(255, 255, 255, 0.8); /* 背景色と透明度 */
-    padding: 20px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10%;
-    width: auto; /* 幅を自動調整 */
-    min-width: 50%; /* 最小幅を画面の50%に設定 */
-}
-
-#search-container button, header button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #d6d6d6;
-    color: #333;
-    transition: background-color 0.4s, transform 0.4s;
-}
-
-#search-container button.active, #search-container button:hover, header button.active, header button:hover {
-    background-color: #3473d8; 
-    color: white;
-    transform: scale(1.1);
-}
-
-.divider {
-    height: 40px; 
-    width: 2px;
-    background-color: rgba(0, 0, 0, 0.3);
-    margin: 0 -5%;
-}
-
-#keywordInput {
-    padding: 10px;
-    border: 2px solid #d6d6d6;
-}
-
-input[type="text"] {
-    padding: 10px;
-    border: 2px solid #d6d6d6;
-}
-
-
-.hidden {
-    display: none;
-}
-
-
-/*-----------*/
-
-#places-container {
-    position: fixed;
-    top: 15%; /* 画面上部から少し下に配置 */
-    right: 5%; /* 右から5%の位置に配置 */
-    width: 20%; /* 幅は画面の20% */
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    overflow-y: auto; /* 内容が多い場合はスクロール可能に */
-    transition: all 0.5s ease-in-out; /* トランジション効果を追加 */
-    z-index: 100; /* 地図より前面に表示 */
-}
-
-#places-container .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background: none;
-    font-size: 30px;
-    cursor: pointer;
-    color: #333;
-}
-
-#places-container ul {
-    list-style: none;
-    padding: 0;
-}
-
-#places-container li {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer; /* クリック可能なアイテムであることを示す*/
-}
-
-/*-----------*/
-
-@media (min-width: 768px) {
-    #search-container {
-        width: 40%; /* タブレットでは幅を40%に */
+@media (max-width: 768px) {
+    .hidden {
+        display: none;
     }
-}
 
-@media (min-width: 1024px) {
-    #search-container {
-        width: 30%; /* デスクトップでは幅を30%に */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5vh;
+        background-color: #574444;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        font-size: 10px;
     }
+    
+    header button {
+        font-size: 14px;
+        width: 20%;
+        height: 70%;
+        border: none;
+        background-color: #ebebeb;
+        color: #333;
+        z-index: 10;
+    }
+
+    #map {
+        position: absolute;
+        top: 5vh;
+        left: 0;
+        width: 100%;
+        height: 95vh;
+        z-index: 1;
+        /* 地図を最背面に */
+    }
+
+    /*-----------*/
+
+    #search-container {
+        position: absolute;
+        width: 85%;
+        height: 15%;
+        bottom: 2.5%;
+        z-index: 2;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    } 
+
+    #search-container button.active {
+        background-color: #3473d8;
+        color: white;
+    }
+
+    #radius{
+        order: 1;
+        width: 35%;
+        height: 41px;
+        margin-right: 5%;
+        border: 1px solid #d6d6d6;
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    #locateButton {
+        order: 2;
+        width: 35%;
+        height: 45px;
+        margin-left: 5%;
+        border: none;
+        background-color: #d6d6d6;
+        color: #333;
+    }
+
+    #touristButton {
+        order: 3;
+        width: 18%;
+        height: 45px;
+        margin-right: 10%;
+        border: none;
+        background-color: #d6d6d6;
+        color: #333;
+    }
+
+    #restaurantButton {
+        order: 4;
+        width: 18%;
+        height: 45px;
+        border: none;
+        background-color: #d6d6d6;
+        color: #333;
+    }
+
+    #keywordInput {
+        order: 5;
+        width: 24%;
+        height: 41px;
+        margin-left: 10%;
+        border: 1px solid #d6d6d6;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    /*-----------*/
+
+    #places-container {
+        position: fixed;
+        top: 15%;
+        right: 5%;
+        width: 40%;
+        max-height: 60vh;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        overflow-y: auto;
+        transition: all 0.5s ease-in-out;
+        z-index: 100;
+    }
+
+    #places-container .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: #333;
+    }
+
+    #places-container ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    #places-container li {
+        padding: 5px;
+        border-bottom: 1px solid #b3b3b3;
+        cursor: pointer;
+    }
+
+    /*-----------*/
+
+    #instructions-container {
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .instructions-content {
+        position: relative;
+    }
+
+    .instructions-content img {
+        display: block;
+        height: 300px;
+        max-width: 100%;
+        max-height: 70vh;
+    }
+
+    .instructions-content .close-button {
+        position: absolute;
+        top: 2vh;
+        right: 2vh;
+        border: none;
+        background: none;
+        font-size: 45px;
+        cursor: pointer;
+        color: #333;
+        z-index: 100;
+    }
+
 }
 
-/*-----------*/
 
-#instructions-container {
-    display: flex;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s, visibility 0.4s; /* トランジションを設定 */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 99;
-}
+/*---------------------------------------------------------------------------*/
 
-.instructions-content {
-    position: relative;
-}
+@media (min-width: 769px) {
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5vh;
+        background-color: #574444;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
 
-.instructions-content img {
-    display: block;
-    max-width: 100%; /* 最大幅を親要素の90%に制限 */
-    max-height: 60vh; /* 画面の高さの80%を最大高さに設定 */
-    margin: 20px;
-}
+    #map {
+        position: absolute;
+        top: 5vh;
+        left: 0;
+        width: 100%;
+        height: 95vh;
+        z-index: 1;
+        /* 地図を最背面に */
+    }
 
-.instructions-content .close-button {
-    position: absolute;
-    top: 5vh;  /* 上端からの距離 */
-    right: 5vh; /* 右端からの距離 */
-    border: none;
-    background: none;
-    font-size: 45px; /* フォントサイズを大きくして視認性を高める */
-    cursor: pointer; /* マウスカーソルをポインターに変更 */
-    color: #333; /* ボタンの色 */
-    z-index: 100;
+    /*-----------*/
+
+    #search-container {
+        position: absolute;
+        bottom: 20px;
+        /* 画面の下から20pxの位置に */
+        left: 50%;
+        /* 左から50%の位置に */
+        transform: translateX(-50%);
+        /* 横中央に配置 */
+        z-index: 2;
+        /* フォームを地図より前面に */
+        background-color: rgba(255, 255, 255, 0.8);
+        /* 背景色と透明度 */
+        padding: 20px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10%;
+        width: auto;
+        /* 幅を自動調整 */
+        min-width: 50%;
+        /* 最小幅を画面の50%に設定 */
+    }
+
+    #search-container button,
+    header button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #d6d6d6;
+        color: #333;
+        transition: background-color 0.4s, transform 0.4s;
+    }
+
+    #search-container button.active,
+    #search-container button:hover,
+    header button.active,
+    header button:hover {
+        background-color: #3473d8;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .divider {
+        height: 40px;
+        width: 2px;
+        background-color: rgba(0, 0, 0, 0.3);
+        margin: 0 -5%;
+    }
+
+    #keywordInput {
+        padding: 10px;
+        border: 2px solid #d6d6d6;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        border: 2px solid #d6d6d6;
+    }
+
+
+    .hidden {
+        display: none;
+    }
+
+
+    /*-----------*/
+
+    #places-container {
+        position: fixed;
+        top: 15%;
+        /* 画面上部から少し下に配置 */
+        right: 5%;
+        /* 右から5%の位置に配置 */
+        width: 20%;
+        /* 幅は画面の20% */
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        overflow-y: auto;
+        /* 内容が多い場合はスクロール可能に */
+        transition: all 0.5s ease-in-out;
+        /* トランジション効果を追加 */
+        z-index: 100;
+        /* 地図より前面に表示 */
+    }
+
+    #places-container .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: #333;
+    }
+
+    #places-container ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    #places-container li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+        /* クリック可能なアイテムであることを示す*/
+    }
+
+    /*-----------*/
+
+    #instructions-container {
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s, visibility 0.4s;
+        /* トランジションを設定 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 99;
+    }
+
+    .instructions-content {
+        position: relative;
+    }
+
+    .instructions-content img {
+        display: block;
+        max-width: 100%;
+        /* 最大幅を親要素の90%に制限 */
+        max-height: 60vh;
+        /* 画面の高さの80%を最大高さに設定 */
+        margin: 20px;
+    }
+
+    .instructions-content .close-button {
+        position: absolute;
+        top: 5vh;
+        /* 上端からの距離 */
+        right: 5vh;
+        /* 右端からの距離 */
+        border: none;
+        background: none;
+        font-size: 45px;
+        /* フォントサイズを大きくして視認性を高める */
+        cursor: pointer;
+        /* マウスカーソルをポインターに変更 */
+        color: #333;
+        /* ボタンの色 */
+        z-index: 100;
+    }
+
 }

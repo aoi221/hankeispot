@@ -105,7 +105,7 @@ function searchPlaces(location, radius) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             displayPlaces(results);
         } else {
-            alert("検索結果が見つかりませんでした。");
+            alert("指定範囲内では検索結果が見つかりませんでした。");
         }
     });
 }
@@ -145,9 +145,8 @@ function addMarker(place) {
         position: place.geometry.location,
         title: place.name
     });
-    markers.push(marker); // マーカーを配列に追加
+    markers.push(marker); 
 
-    // マーカーをクリックしたときのイベント
     google.maps.event.addListener(marker, 'click', () => {
         const placeUrl = encodeURI(`https://www.google.com/maps/search/${place.name}/@${place.geometry.location.lat()},${place.geometry.location.lng()},17z?entry=ttu`);
         window.open(placeUrl, '_blank'); // 新しいタブでGoogle Mapsの場所のページを開く
@@ -156,9 +155,9 @@ function addMarker(place) {
 
 function clearMarkers() {
     for (let marker of markers) {
-        marker.setMap(null); // マーカーを地図から削除
+        marker.setMap(null); 
     }
-    markers = []; // マーカーの配列をクリア
+    markers = []; 
 }
 
 function closePlaces() {
