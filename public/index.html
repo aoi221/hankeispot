@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>半径スポット検索</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Hankei Spot Finder</h1>
+        <h2></h2>
+        <button onclick="showInstructions()">使い方（未作成）</button>
+    </header>
+
+    <div id="map"></div>
+
+
+
+    <div id="search-container">
+        <input type="text" id="radius" placeholder="半径（メートル）を入力">
+        <div class="divider"></div>
+        <button id="touristButton" onclick="selectType('tourist_attraction')">観光地</button>
+        <button id="restaurantButton" onclick="selectType('restaurant')">飲食店</button>
+        <input type="text" id="keywordInput" placeholder="食べ物のジャンルを入力">
+        <div class="divider"></div>
+        <button onclick="locateUser()">現在地を使用</button>
+    </div>
+
+    </div>
+
+    <div id="places-container" class="hidden">
+        <button onclick="closePlaces()" class="close-button">×</button>
+        <ul id="places"></ul>
+    </div>
+
+    <div id="instructions-container">
+        <div class="instructions-content">
+            <button onclick="closeInstructions()" class="close-button">×</button>
+            <img src="../images/howto.png" alt="使い方">
+        </div>
+    </div>    
+    
+    <script src="script.js"></script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApGwpzwrKGHMiGMCOQbM0Dw1matiqYP3s&callback=initMap&sensor=true&libraries=places">
+        </script>
+</body>
+
+</html>
